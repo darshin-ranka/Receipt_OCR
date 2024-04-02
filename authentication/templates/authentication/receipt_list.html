@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Receipt List</title>
+</head>
+<body>
+    <h1>Receipt List</h1>
+    <ul>
+        {% for receipt in receipts %}
+            <li>{{ receipt }}</li>
+        {% endfor %}
+    </ul>
+    <a href="{% url 'add_receipt' %}">Add Receipt</a>
+</body>
+</html>
+

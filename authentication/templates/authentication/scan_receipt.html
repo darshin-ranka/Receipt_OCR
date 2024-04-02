@@ -1,0 +1,37 @@
+<!-- receipts_ocr/templates/receipts_ocr/scan_receipt.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Scan Receipt</title>
+</head>
+<body>
+
+    <h2>Scan Receipt</h2>
+
+    <div>
+        <h3>Upload Receipt Image</h3>
+        <form method="post" enctype="multipart/form-data">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <!-- scan_receipt.html -->
+
+<p>Text extracted from receipt: {{ uploaded_image.ocr_text }}</p>
+
+            <input type="file" name="image" accept="image/*" required>
+            <button type="submit" name="submit">Scan Receipt</button>
+            <button type="reset" name="clear">Clear</button>
+        </form>
+    </div>
+
+    {% if uploaded_image %}
+        <div>
+            <h3>Receipt Output</h3>
+            <img src="{{ uploaded_image.imagr.url }}" alt="{{ uploaded_image.image.name }}" style="max-width: 100%;">
+            <p>Text extracted from receipt: {{ uploaded_image.text }}</p>
+        </div>
+    {% endif %}
+
+</body>
+</html>
